@@ -22,7 +22,7 @@ export const authReducer = ( state ={}, action )=>{
                 name: action.payload.displayName
             }
             
-        case types.login:
+        case types.logout:
             
             return {}   //break;
     
