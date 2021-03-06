@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { activeNote } from '../../actions/notes'
+import { activeNote, startDeleting } from '../../actions/notes'
 import { useForm } from '../../hooks/useForm'
 import { NotesAppBar } from './NotesAppBar'
 
@@ -12,7 +12,7 @@ export const NoteScreen = () => {
     //
     const [formValues, handleInputChange,reset ] = useForm(note);
     //console.log( formValues );
-    const { body, title }= formValues;
+    const { body, title, id }= formValues;
     
     const activeId = useRef(note.id);
     
@@ -30,6 +30,12 @@ export const NoteScreen = () => {
         dispatch(activeNote( formValues.id, { ...formValues }))
        
     }, [formValues, dispatch])
+
+
+    const handleDelete = ()=>{
+        //console.log(id)        
+        dispatch(startDeleting(id));
+    }
 
 
     return (
@@ -69,6 +75,10 @@ export const NoteScreen = () => {
                 }
 
             </div>
+
+            <button className="btn btn-danger" onClick={ handleDelete }>
+                Delete
+            </button>
         </div>
     )
 }
