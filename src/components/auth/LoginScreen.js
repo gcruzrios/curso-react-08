@@ -25,6 +25,7 @@ export const LoginScreen = () => {
     }
 
     const handleGoogleLogin = ()=>{
+       //console.log('Hey!!')
        dispatch(startGoogleLogin()); 
     }
     return (
